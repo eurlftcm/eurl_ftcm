@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EURLFTCM - وسائل التواصل الاجتماعي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -56,6 +55,16 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fdbb2d 0%, #b21f1f 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         .logo-text {
@@ -261,51 +270,6 @@
             margin: 25px 0;
         }
         
-        /* قسم رمز QR الجديد */
-        .qr-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #6a11cb;
-        }
-        
-        .qr-title {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        
         @media (max-width: 500px) {
             .container {
                 width: 95%;
@@ -329,7 +293,7 @@
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <img src="462683823_849214500726708_8808284279407207678_n.jpg" alt="EURLFTCM Logo" class="logo">
+                <div class="logo">EURL<br>FTCM</div>
                 <div class="logo-text">ᴇᴜʀʟFTCM</div>
             </div>
             <div class="location-container" id="locationContainer">
@@ -339,7 +303,7 @@
                 </div>
                 <div class="location-dropdown">
                     <a href="https://www.google.com/maps?sca_esv=73afc9bb409a06fd&biw=1920&bih=991&output=search&q=ftcm+oran&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQ3waWGf7F4TaqPQXdbNPKI3KUtz5D821-BfD5QA5-gMSY---cxJEnqf1UiAmusPoGv0Zm5b6uwL8_0-lLogFko8j5ws2yoG9QOcM2aNKuXCSDJqPDBkszO0TjPYKijxIQ49U_lk6qPN7339hOnygFv4MORQy2GhDjTI73TC1Kf1vy1jLNw23GOMHb23jn-gusx52W2w&entry=mc&ved=1t:200715&ictx=111" target="_blank" class="location-option">ORAN</a>
-                    <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI1MDkxMC.0IKXMDSoASAFQAw%3D%3D" target="_blank" class="location-option">EL EULMA</a>
+                    <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI5MDkxMC4wIKXMDSoASAFQA%3D%3D" target="_blank" class="location-option">EL EULMA</a>
                 </div>
             </div>
             <p class="tagline">أفضل أثاث عمري بجودة عالية</p>
@@ -367,7 +331,7 @@
                     <span>TikTok</span>
                 </a>
                 
-                <a href="https://web.whatsapp.com/" target="_blank" class="social-link whatsapp">
+                <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fapi.whatsapp.com%2Fsend%3Fphone%3D%252B213770784476%26context%3DAfco7RlHeeXD1kOy6jQlY8AWxcAAqxWHcVuOmSNpMtc9tnxpeHtW2QelOS4Yb_cxaWzQ_1_eOWlpl9Fs-pv_O9jbRkodHs2cNLNJ4EYPaellKOBeVJU1i53m4CS14FW-NqVCqMdQIHQPJNUgSUiIdaLjcw%26source%3DFB_Page%26app%3Dfacebook%26entry_point%3Dpage_cta%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExeWs2RGJmR3FhYTVPdjNPRgEe5UL8rYwCz2gU5zADpzyc4rJllK4c_Gu2wZaL7eyRNt7oyF-9t4i0Ogk7q4Y_aem_WAGVdlTxY73IfA2RHyYSbQ&h=AT3mHDtHbQ2jB0_FJ9EnThOf_mPeJBiY681NITRKCMAVgfnqrUWLqYIzfoM1mBgaBP0AxorSR46skTbXJaDthM6e2ZRhtVu-7M7O4hUwXmMU_jXt0gszHEIPacfTftEk9eV9Lw" target="_blank" class="social-link whatsapp">
                     <i class="fab fa-whatsapp"></i>
                     <span>WhatsApp</span>
                 </a>
@@ -428,31 +392,6 @@
                         window.open(this.href, '_blank');
                     }, 300);
                 });
-            });
-            
-            // إنشاء رمز QR
-            const qrElement = document.getElementById('qrcode');
-            const currentUrl = window.location.href;
-            
-            // إنشاء QR Code باستخدام المكتبة
-            new QRCode(qrElement, {
-                text: currentUrl,
-                width: 180,
-                height: 180,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
-            });
-            
-            // إضافة وظيفة تحميل رمز QR
-            document.getElementById('downloadQR').addEventListener('click', function() {
-                const canvas = qrElement.querySelector('canvas');
-                if (canvas) {
-                    const link = document.createElement('a');
-                    link.download = 'EURLFTCM-QRCode.png';
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                }
             });
         });
     </script>
