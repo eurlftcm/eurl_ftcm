@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1f00 50%, #5a3e00 100%);
             color: #333;
             min-height: 100vh;
             display: flex;
@@ -27,15 +27,48 @@
         .container {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 90%;
             max-width: 500px;
             overflow: hidden;
             text-align: center;
+            position: relative;
+        }
+        
+        /* تأثير الحواف المتغيرة */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #d4af37, #8e6c22, #ffd700);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .container:hover::before {
+            opacity: 1;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .header {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #8e6c22 0%, #d4af37 50%, #ffd700 100%);
             padding: 30px 20px;
             color: white;
             position: relative;
@@ -55,16 +88,13 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #fdbb2d 0%, #b21f1f 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            padding: 5px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         .logo-text {
@@ -72,6 +102,12 @@
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             font-family: Arial, sans-serif;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-text:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
         .location-container {
@@ -86,10 +122,21 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .location:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
         
         .location i {
-            color: #fdbb2d;
+            color: #fff;
             animation: pulse 2s infinite;
         }
         
@@ -134,6 +181,8 @@
             font-size: 16px;
             margin-bottom: 20px;
             font-weight: 500;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .content {
@@ -141,9 +190,15 @@
         }
         
         h1 {
-            color: #2c3e50;
+            color: #8e6c22;
             margin-bottom: 10px;
             font-size: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        h1:hover {
+            color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
         
         .description {
@@ -178,7 +233,7 @@
         .social-link:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-color: #6a11cb;
+            border-color: #d4af37;
             background-color: #fff;
         }
         
@@ -231,17 +286,206 @@
         .whatsapp:hover { border-color: #25D366; }
         .whatsapp::before { background-color: #25D366; }
         
+        .contact-info {
+            display: none;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0 15px 0;
+            border: 2px solid #d4af37;
+            text-align: right;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.4s ease-out;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            max-height: 0;
+        }
+        
+        .contact-info.show {
+            display: block;
+            max-height: 500px;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8e6c22, #d4af37, #ffd700);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-info:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .contact-info h3 {
+            color: #8e6c22;
+            margin-bottom: 15px;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info:hover h3 {
+            color: #d4af37;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(-5px);
+            border-bottom-color: #d4af37;
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-item i {
+            color: #8e6c22;
+            font-size: 18px;
+            width: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover i {
+            color: #d4af37;
+            transform: scale(1.2);
+        }
+        
+        .contact-item span {
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #8e6c22 0%, #d4af37 50%, #ffd700 100%);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .contact-button:hover::before {
+            left: 100%;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-button i {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+        
+        .save-contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #25D366 0%, #1ea84c 100%);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            margin-top: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .save-contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .save-contact-button:hover::before {
+            left: 100%;
+        }
+        
+        .save-contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .save-contact-button i {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+        
         .shop-section {
             background-color: #f8f9fa;
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
-            border: 2px dashed #6a11cb;
+            border: 2px dashed #d4af37;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .shop-section:hover {
+            border-style: solid;
+            border-color: #8e6c22;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .shop-button {
             display: inline-block;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #8e6c22 0%, #d4af37 100%);
             color: white;
             padding: 12px 25px;
             border-radius: 50px;
@@ -250,6 +494,23 @@
             margin-top: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .shop-button:hover::before {
+            left: 100%;
         }
         
         .shop-button:hover {
@@ -259,15 +520,25 @@
         
         .footer {
             margin-top: 20px;
-            color: white;
+            color: #8e6c22;
             text-align: center;
             font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer:hover {
+            color: #d4af37;
         }
         
         .divider {
             height: 1px;
-            background: linear-gradient(to right, transparent, #ccc, transparent);
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
             margin: 25px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover .divider {
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
         }
         
         @media (max-width: 500px) {
@@ -293,7 +564,7 @@
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <div class="logo">EURL<br>FTCM</div>
+                <img src="https://i.ibb.co/zWbDFx4M/462683823-849214500726708-8808284279407207678-n.jpg" alt="EURLFTCM Logo" class="logo">
                 <div class="logo-text">ᴇᴜʀʟFTCM</div>
             </div>
             <div class="location-container" id="locationContainer">
@@ -303,7 +574,7 @@
                 </div>
                 <div class="location-dropdown">
                     <a href="https://www.google.com/maps?sca_esv=73afc9bb409a06fd&biw=1920&bih=991&output=search&q=ftcm+oran&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQ3waWGf7F4TaqPQXdbNPKI3KUtz5D821-BfD5QA5-gMSY---cxJEnqf1UiAmusPoGv0Zm5b6uwL8_0-lLogFko8j5ws2yoG9QOcM2aNKuXCSDJqPDBkszO0TjPYKijxIQ49U_lk6qPN7339hOnygFv4MORQy2GhDjTI73TC1Kf1vy1jLNw23GOMHb23jn-gusx52W2w&entry=mc&ved=1t:200715&ictx=111" target="_blank" class="location-option">ORAN</a>
-                    <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI5MDkxMC4wIKXMDSoASAFQA%3D%3D" target="_blank" class="location-option">EL EULMA</a>
+                    <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI5MDkxMC.0IKXMDSoASAFQA%3D%3D" target="_blank" class="location-option">EL EULMA</a>
                 </div>
             </div>
             <p class="tagline">أفضل أثاث عمري بجودة عالية</p>
@@ -314,6 +585,41 @@
             <p class="description">تابعنا على منصات التواصل الاجتماعي المختلفة للبقاء على اطلاع بأخر أخبارنا وعروضنا</p>
             
             <div class="divider"></div>
+            
+            <!-- زر معلومات الاتصال -->
+            <a href="#" class="contact-button" id="contactButton">
+                <i class="fas fa-address-card"></i>
+                <span>معلومات الاتصال</span>
+            </a>
+            
+            <!-- معلومات الاتصال المخفية -->
+            <div class="contact-info" id="contactInfo">
+                <h3>معلومات الاتصال</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0550-49-18-16</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0770-78-44-76</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>eurl.ftcm@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>FTCM ELEULMA</span>
+                    </div>
+                </div>
+                
+                <!-- زر حفظ جهة الاتصال داخل قسم معلومات الاتصال -->
+                <a href="#" class="save-contact-button" id="saveContactButton">
+                    <i class="fas fa-address-book"></i>
+                    <span>حفظ جهة الاتصال</span>
+                </a>
+            </div>
             
             <div class="social-links">
                 <a href="https://web.facebook.com/FTCM.dz" target="_blank" class="social-link facebook">
@@ -392,6 +698,73 @@
                         window.open(this.href, '_blank');
                     }, 300);
                 });
+            });
+            
+            // إدارة زر معلومات الاتصال
+            const contactButton = document.getElementById('contactButton');
+            const contactInfo = document.getElementById('contactInfo');
+            let contactVisible = false;
+            
+            contactButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactVisible = !contactVisible;
+                
+                if (contactVisible) {
+                    // إظهار القسم مع الأنيميشن
+                    contactInfo.style.display = 'block';
+                    // استخدام setTimeout لإعطاء الوقت لعرض العنصر قبل إضافة الكلاس
+                    setTimeout(() => {
+                        contactInfo.classList.add('show');
+                    }, 10);
+                    contactButton.innerHTML = '<i class="fas fa-times"></i><span>إغلاق المعلومات</span>';
+                } else {
+                    // إخفاء القسم مع الأنيميشن
+                    contactInfo.classList.remove('show');
+                    // الانتظار حتى تنتهي الأنيميشن ثم إخفاء العنصر
+                    setTimeout(() => {
+                        contactInfo.style.display = 'none';
+                    }, 400);
+                    contactButton.innerHTML = '<i class="fas fa-address-card"></i><span>معلومات الاتصال</span>';
+                }
+            });
+            
+            // إدارة زر حفظ جهة الاتصال
+            const saveContactButton = document.getElementById('saveContactButton');
+            
+            saveContactButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // إنشاء محتوى ملف vCard حسب التنسيق المطلوب
+                const vCardContent = `BEGIN:VCARD
+VERSION:3.0
+N:FTCM;ELEULMA;
+EMAIL;TYPE=work:eurl.ftcm@gmail.com
+TEL;TYPE=work:0550878004
+ADR;:;;Cité EURLFTCM EL EULMA, Sétif
+URL;TYPE=linktree:https://eurlftcm.github.io/eurl_ftcm/
+END:VCARD`;
+                
+                // إنشاء ملف Blob
+                const blob = new Blob([vCardContent], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+                
+                // إنشاء رابط تنزيل
+                const downloadLink = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = 'EURL FTCM ELEULMA-contact.vcf';
+                
+                // إضافة الرابط للصفحة والنقر عليه برمجياً
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                
+                // تنظيف الذاكرة
+                setTimeout(() => {
+                    document.body.removeChild(downloadLink);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                // إظهار رسالة تأكيد
+                alert('تم حفظ جهة الاتصال بنجاح! سيتم تحميل ملف جهة الاتصال.');
             });
         });
     </script>
