@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EURL FTCM - وسائل التواصل الاجتماعي</title>
+    <title>EURLFTCM - وسائل التواصل الاجتماعي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -127,6 +127,8 @@
             background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            text-decoration: none;
+            color: white;
         }
         
         .location:hover {
@@ -144,37 +146,6 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
-        }
-        
-        .location-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            width: 150px;
-            z-index: 10;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-        
-        .location-option {
-            padding: 10px;
-            color: #333;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s;
-        }
-        
-        .location-option:hover {
-            background: #f0f0f0;
-        }
-        
-        .show-dropdown .location-dropdown {
-            display: block;
         }
         
         .tagline {
@@ -568,14 +539,10 @@
                 <div class="logo-text">ᴇᴜʀʟFTCM</div>
             </div>
             <div class="location-container" id="locationContainer">
-                <div class="location">
+                <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI5MDkxMC.0IKXMDSoASAFQA%3D%3D" target="_blank" class="location">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Location ❤</span>
-                </div>
-                <div class="location-dropdown">
-                    <a href="https://www.google.com/maps?sca_esv=73afc9bb409a06fd&biw=1920&bih=991&output=search&q=ftcm+oran&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQ3waWGf7F4TaqPQXdbNPKI3KUtz5D821-BfD5QA5-gMSY---cxJEnqf1UiAmusPoGv0Zm5b6uwL8_0-lLogFko8j5ws2yoG9QOcM2aNKuXCSDJqPDBkszO0TjPYKijxIQ49U_lk6qPN7339hOnygFv4MORQy2GhDjTI73TC1Kf1vy1jLNw23GOMHb23jn-gusx52W2w&entry=mc&ved=1t:200715&ictx=111" target="_blank" class="location-option">ORAN</a>
-                    <a href="https://www.google.com/maps/place/FTCM+EL+EULMA/@36.1628458,5.6700812,17z/data=!3m1!4b1!4m6!3m5!1s0x12f30be4f6a2b9bb:0x87ff4c28c63d4505!8m2!3d36.1628416!4d5.6749521!16s%2Fg%2F11gxzq3hzs?entry=ttu&g_ep=EgoyMDI5MDkxMC.0IKXMDSoASAFQA%3D%3D" target="_blank" class="location-option">EL EULMA</a>
-                </div>
+                </a>
             </div>
             <p class="tagline">أفضل أثاث عصري بجودة عالية</p>
         </div>
@@ -654,52 +621,14 @@
             
             <div class="footer">
                 <p>جميع الحقوق محفوظة</p>
-                <p>ᴇᴜʀʟFTCM 2023 ©</p>
+                <p>ᴇᴜʀʟFTCM 2026 ©</p>
             </div>
         </div>
     </div>
 
     <script>
-        // جافاسكريبت لإدارة قائمة الموقع
+        // جافاسكريبت لإدارة معلومات الاتصال
         document.addEventListener('DOMContentLoaded', function() {
-            const locationContainer = document.getElementById('locationContainer');
-            const locationOptions = document.querySelectorAll('.location-option');
-            let dropdownVisible = false;
-            
-            // إظهار القائمة عند النقر
-            locationContainer.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownVisible = !dropdownVisible;
-                
-                if (dropdownVisible) {
-                    locationContainer.classList.add('show-dropdown');
-                } else {
-                    locationContainer.classList.remove('show-dropdown');
-                }
-            });
-            
-            // إخفاء القائمة عند النقر خارجها
-            document.addEventListener('click', function(e) {
-                if (dropdownVisible && !locationContainer.contains(e.target)) {
-                    dropdownVisible = false;
-                    locationContainer.classList.remove('show-dropdown');
-                }
-            });
-            
-            // منع إغلاق القائمة عند النقر على الخيارات
-            locationOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    dropdownVisible = false;
-                    locationContainer.classList.remove('show-dropdown');
-                    
-                    // الانتقال إلى الرابط بعد تأخير بسيط
-                    setTimeout(() => {
-                        window.open(this.href, '_blank');
-                    }, 300);
-                });
-            });
-            
             // إدارة زر معلومات الاتصال
             const contactButton = document.getElementById('contactButton');
             const contactInfo = document.getElementById('contactInfo');
